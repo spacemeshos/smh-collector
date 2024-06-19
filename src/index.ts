@@ -31,7 +31,7 @@ const waitForTx = async (rpc: string, txId: string): Promise<void> => {
     tx.txState === 'TRANSACTION_STATE_MESH' ||
     tx.txState === 'TRANSACTION_STATE_UNSPECIFIED'
   ) {
-    await delay(LAYER_TIME);
+    await delay(LAYER_TIME / 2);
     return waitForTx(rpc, txId);
   }
 
@@ -238,6 +238,7 @@ const waitForTx = async (rpc: string, txId: string): Promise<void> => {
           console.log(`Spawn transaction published: ${txId}`);
           // Wait for processing of spawn tx and only then publish spend tx
           waitForTx(inputs.rpc, txId).then(() => spend(true));
+          console.log('Waiting for processing of Spawn transaction. Spend transaction will be published automatically afterwards.');
         } catch (err) {
           console.error('Cannot publish spawn transaction:', err);
           console.log('Encoded and signed transaction:\n', Buffer.from(signed).toString('hex'));
