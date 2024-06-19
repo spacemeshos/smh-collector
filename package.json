@@ -1,0 +1,34 @@
+{
+  "name": "smh-collector",
+  "version": "1.0.0",
+  "description": "Script to collect SMH from some wallet (multiple accounts) and send to specified address",
+  "main": "index.js",
+  "bin": {
+    "smh-collect": "./build/index.js"
+  },
+  "pkg": {
+    "scripts": "build/**/*.js"
+  },
+  "scripts": {
+    "dev": "ts-node ./src/index.ts",
+    "build": "tsc",
+    "pack": "pkg . --output smh-collect",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@scure/bip39": "^1.3.0",
+    "@spacemesh/ed25519-bip32": "^0.2.1",
+    "@spacemesh/sm-codec": "^0.6.1",
+    "bech32": "^2.0.0",
+    "prompts": "^2.4.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.5",
+    "@types/prompts": "^2.4.9",
+    "pkg": "^5.8.1",
+    "typescript": "^5.4.5"
+  }
+}
